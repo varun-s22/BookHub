@@ -10,16 +10,19 @@
 
 <body>
     <h1>home page</h1>
+    <form action="/search">
+        <input type="text" placeholder="Search for book" name="bookName">
+        <button>Search</button>
+    </form>
     <ul>
-        <% for(let id in books){%>
+        <% for(let id in booksArr){%>
             <li>
-                <a href="/book/<%=id%>">
-                    <img src="<%=books[id].imageLink%>" alt="">
+                <a href="/book/<%=booksArr[id].title%>">
+                    <img src="<%=booksArr[id].imageLink%>" alt="">
                 </a>
             </li>
             <% } %>
     </ul>
-    <a href="/new">New</a>
 </body>
 
 </html>
