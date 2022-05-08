@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        <%= bookInfo.title %>
+    </title>
+</head>
+
+<body>
+    <h1>
+        <%= bookInfo.title %>
+    </h1>
+    <h2>
+        <%= bookInfo.subTitle %>
+    </h2>
+    <img src="<%=bookInfo.imageLink%>" alt="">
+
+    <% if (bookInfo.authors) { %>
+        <div>
+            <ul>
+                <% for(let author of bookInfo.authors){ %>
+                    <li>
+                        <%=author%>
+                    </li>
+                    <% } %>
+            </ul>
+        </div>
+        <% } %>
+
+            <div>
+                Published Year: <%=bookInfo.publishedYear%>
+            </div>
+
+            <% if (bookInfo.categories) { %>
+                <div>
+                    <ul>
+                        <% for(let category of bookInfo.categories){ %>
+                            <li>
+                                <%=category%>
+                            </li>
+                            <% } %>
+                    </ul>
+                </div>
+                <% } %>
+
+                    <% if (bookInfo.description) { %>
+                        <div>
+                            <%=bookInfo.description%>
+                        </div>
+                        <% } %>
+
+                            <div>
+                                Pages : <%=bookInfo.pages%>
+                                    Language: <%=bookInfo.language%>
+                            </div>
+                            <a href="<%=bookInfo.downloadLink%>">Download</a>
+</body>
+
+</html>
