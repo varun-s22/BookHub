@@ -2,6 +2,8 @@ const express = require("express")
 const app = express()
 const path = require("path")
 const axios = require("axios")
+const wrapAsync = require("./utils/wrapAsync")
+const bookError = require("./utils/bookError")
 require("dotenv").config()
 const API_KEY = process.env.API_KEY
 
@@ -40,29 +42,34 @@ let getBooks = async (bookName = "subject:fiction", qty = 40) => {
     return booksArr
 }
 
-app.get("/", async (req, res) => {
+app.get("/", wrapAsync(async (req, res) => {
     let booksArr = await getBooks()
     res.render("home", { booksArr })
-})
-app.get("/book/:id", async (req, res) => {
+}))
+app.get("/book/:id", wrapAsync(async (req, res) => {
     let bookName = req.params.id
     let bookData = await getBooks(bookName, 1)
     let key = Object.keys(bookData)[0]
     let bookInfo = bookData[key]
     res.render("book", { bookInfo })
-})
-app.get("/search", async (req, res) => {
+}))
+app.get("/search", wrapAsync(async (req, res) => {
     let bookName = req.query.bookName
     let booksArr = await getBooks(bookName)
     res.render("searchedBooks", { book: { ...booksArr, queryName: bookName } })
 
-})
+}))
 app.get("/book/view/:id", (req, res) => {
     let id = req.params.id
     res.render("viewBook", { data: { bookId: id } })
 })
-app.get("/new", (req, res) => {
-    res.render("new")
+app.all("*", (req, res, next) => {
+    next(new bookError("Page not found!!", 404))
+})
+app.use((err, req, res, next) => {
+    let { statusCode } = err
+    if (!err.msg) err.msg = "Something went wrong!!"
+    res.status(statusCode).render("error", { err })
 })
 app.listen(3000, () => {
     console.log("connected to port 3000")
