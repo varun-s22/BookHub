@@ -54,6 +54,38 @@
                                 Pages : <%=bookInfo.pages%>
                                     Language: <%=bookInfo.language%>
                             </div>
+                            <div>
+                                <% if(bookInfo.bookComments){ %>
+                                    <ul>
+                                        <% for (let com of bookInfo.bookComments){ %>
+                                            <li>
+                                                <%=com.comment%> -> <%=com.rating%>*
+                                                        <form
+                                                            action="/book/<%=bookInfo.id%>/comment/<%=com._id%>?_method=DELETE"
+                                                            method="POST">
+                                                            <button>Delete</button>
+                                                        </form>
+                                            </li>
+                                            <%}%>
+                                    </ul>
+                                    <% } %>
+                            </div>
+                            <div>
+                                <form action="/book/<%=bookInfo.id%>/comment" method="POST">
+                                    <label for="rating">Rating</label>
+                                    <select name="rating" id="rating">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <label for="comment">Comment</label>
+                                    <textarea name="comment" id="comment" cols="70" rows="5"
+                                        placeholder="Enter comment"></textarea>
+                                    <button>Post</button>
+                                </form>
+                            </div>
                             <a href="<%=bookInfo.downloadLink%>">Download</a>
                             <a href="/book/view/<%=bookInfo.id%>">View</a>
 </body>

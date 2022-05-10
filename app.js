@@ -4,12 +4,27 @@ const path = require("path")
 const axios = require("axios")
 const wrapAsync = require("./utils/wrapAsync")
 const bookError = require("./utils/bookError")
+const methodOverride = require('method-override')
 require("dotenv").config()
 const API_KEY = process.env.API_KEY
+const Comments = require("./modules/comment")
+
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost:27017/comment', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+})
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 let getBooks = async (bookName = "subject:fiction", qty = 40) => {
     let booksArr = {}
@@ -37,7 +52,16 @@ let getBooks = async (bookName = "subject:fiction", qty = 40) => {
             imageLink: books.volumeInfo.imageLinks.thumbnail,
             language: languageObj[books.volumeInfo.language]
         }
-        booksArr[id] = bookInfo
+        try {
+            let comments = await Comments.find({ bookId: id }).exec()
+            bookInfo.bookComments = comments
+            booksArr[id] = bookInfo
+        }
+        catch (e) {
+            console.log("Error at comment section!!")
+            console.log(e)
+        }
+
     }
     return booksArr
 }
@@ -52,6 +76,21 @@ app.get("/book/:id", wrapAsync(async (req, res) => {
     let key = Object.keys(bookData)[0]
     let bookInfo = bookData[key]
     res.render("book", { bookInfo })
+}))
+app.post("/book/:id/comment", wrapAsync(async (req, res) => {
+    let { id } = req.params
+    const comment = new Comments({
+        bookId: id,
+        comment: req.body.comment,
+        rating: req.body.rating
+    })
+    await comment.save()
+    res.redirect(`/book/${id}`)
+}))
+app.delete("/book/:id/comment/:commentId", wrapAsync(async (req, res) => {
+    let { id, commentId } = req.params
+    await Comments.findByIdAndDelete(commentId)
+    res.redirect(`/book/${id}`)
 }))
 app.get("/search", wrapAsync(async (req, res) => {
     let bookName = req.query.bookName
