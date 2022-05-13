@@ -9,6 +9,14 @@
 </head>
 
 <body>
+    <%= successMsg %>
+    <%= errorMsg %>
+    <% if(!signedInUser) {%>
+    <a href="/auth/register">register</a>
+    <a href="/auth/login">Login</a>
+    <% } else { %>
+    <a href="/auth/logout">Logout</a>
+    <% } %>
     <h1>home page</h1>
     <form action="/search">
         <input type="text" placeholder="Search for book" name="bookName">
@@ -16,12 +24,12 @@
     </form>
     <ul>
         <% for(let id in booksArr){%>
-            <li>
-                <a href="/book/<%=booksArr[id].title%>">
-                    <img src="<%=booksArr[id].imageLink%>" alt="">
-                </a>
-            </li>
-            <% } %>
+        <li>
+            <a href="/book/<%=booksArr[id].title%>">
+                <img src="<%=booksArr[id].imageLink%>" alt="">
+            </a>
+        </li>
+        <% } %>
     </ul>
 </body>
 

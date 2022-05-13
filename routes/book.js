@@ -3,9 +3,9 @@ const router = express.Router()
 const Comments = require("../modules/comment")
 const wrapAsync = require("../utils/wrapAsync")
 const getBooks = require("../utils/getBooks")
+const isLoggedIn = require("../utils/isLoggedIn")
 
-
-router.get("/:id", wrapAsync(async (req, res) => {
+router.get("/:id", isLoggedIn, wrapAsync(async (req, res) => {
     let bookName = req.params.id
     try {
         let bookData = await getBooks(bookName, 1)
