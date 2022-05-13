@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/stars.css">
     <title>
         <%= bookInfo.title %>
     </title>
@@ -59,7 +63,10 @@
         <ul>
             <% for (let com of bookInfo.bookComments){ %>
             <li>
-                <%= com.author.username %>: <%=com.comment%> -> <%=com.rating%>*
+                <%= com.author.username %>: <%=com.comment%> -> <p class="starability-result"
+                    data-rating="<%=com.rating%>">
+                    Rated: <%=com.rating%> stars
+                </p>
                 <% if(signedInUser && com.author.equals(signedInUser._id)) {%>
                 <form action="/book/<%=bookInfo.id%>/comment/<%=com._id%>?_method=DELETE" method="POST">
                     <button>Delete</button>
@@ -73,14 +80,21 @@
     <% if(signedInUser) {%>
     <div>
         <form action="/book/<%=bookInfo.id%>/comment" method="POST">
-            <label for="rating">Rating</label>
-            <select name="rating" id="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+            <fieldset class="starability-basic">
+                <legend>Rating:</legend>
+                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
+                    aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="rating" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="rating" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="rating" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="rating" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="rating" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
             <label for="comment">Comment</label>
             <textarea name="comment" id="comment" cols="70" rows="5" placeholder="Enter comment"></textarea>
             <button>Post</button>

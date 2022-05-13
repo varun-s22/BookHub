@@ -4,6 +4,7 @@ const User = require("../modules/user")
 const flash = require("connect-flash")
 const wrapAsync = require("../utils/wrapAsync")
 const passport = require("passport")
+const isLoggedIn = require("../utils/middlewares/isLoggedIn")
 
 router.get("/register", (req, res) => {
     res.render("register")
@@ -36,7 +37,7 @@ router.post("/login", passport.authenticate("local", { failureFlash: true, failu
     delete req.session.returnTo
     res.redirect(redirectURl)
 })
-router.get("/logout", (req, res) => {
+router.get("/logout", isLoggedIn, (req, res) => {
     req.logout()
     // res.flash("success", "Successfully logged out")
     res.redirect("/")
