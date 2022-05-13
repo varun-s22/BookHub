@@ -17,77 +17,80 @@
     <img src="<%=bookInfo.imageLink%>" alt="">
 
     <% if (bookInfo.authors) { %>
-        <div>
-            <ul>
-                <% for(let author of bookInfo.authors){ %>
-                    <li>
-                        <%=author%>
-                    </li>
-                    <% } %>
-            </ul>
-        </div>
-        <% } %>
+    <div>
+        <ul>
+            <% for(let author of bookInfo.authors){ %>
+            <li>
+                <%=author%>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+    <% } %>
 
-            <div>
-                Published Year: <%=bookInfo.publishedYear%>
-            </div>
+    <div>
+        Published Year: <%=bookInfo.publishedYear%>
+    </div>
 
-            <% if (bookInfo.categories) { %>
-                <div>
-                    <ul>
-                        <% for(let category of bookInfo.categories){ %>
-                            <li>
-                                <%=category%>
-                            </li>
-                            <% } %>
-                    </ul>
-                </div>
+    <% if (bookInfo.categories) { %>
+    <div>
+        <ul>
+            <% for(let category of bookInfo.categories){ %>
+            <li>
+                <%=category%>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+    <% } %>
+
+    <% if (bookInfo.description) { %>
+    <div>
+        <%=bookInfo.description%>
+    </div>
+    <% } %>
+
+    <div>
+        Pages : <%=bookInfo.pages%>
+        Language: <%=bookInfo.language%>
+    </div>
+    <div>
+        <% if(bookInfo.bookComments){ %>
+        <ul>
+            <% for (let com of bookInfo.bookComments){ %>
+            <li>
+                <%= com.author.username %>: <%=com.comment%> -> <%=com.rating%>*
+                <% if(signedInUser && com.author.equals(signedInUser._id)) {%>
+                <form action="/book/<%=bookInfo.id%>/comment/<%=com._id%>?_method=DELETE" method="POST">
+                    <button>Delete</button>
+                </form>
                 <% } %>
-
-                    <% if (bookInfo.description) { %>
-                        <div>
-                            <%=bookInfo.description%>
-                        </div>
-                        <% } %>
-
-                            <div>
-                                Pages : <%=bookInfo.pages%>
-                                    Language: <%=bookInfo.language%>
-                            </div>
-                            <div>
-                                <% if(bookInfo.bookComments){ %>
-                                    <ul>
-                                        <% for (let com of bookInfo.bookComments){ %>
-                                            <li>
-                                                <%=com.comment%> -> <%=com.rating%>*
-                                                        <form
-                                                            action="/book/<%=bookInfo.id%>/comment/<%=com._id%>?_method=DELETE"
-                                                            method="POST">
-                                                            <button>Delete</button>
-                                                        </form>
-                                            </li>
-                                            <%}%>
-                                    </ul>
-                                    <% } %>
-                            </div>
-                            <div>
-                                <form action="/book/<%=bookInfo.id%>/comment" method="POST">
-                                    <label for="rating">Rating</label>
-                                    <select name="rating" id="rating">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <label for="comment">Comment</label>
-                                    <textarea name="comment" id="comment" cols="70" rows="5"
-                                        placeholder="Enter comment"></textarea>
-                                    <button>Post</button>
-                                </form>
-                            </div>
-                            <a href="<%=bookInfo.downloadLink%>">Download</a>
-                            <a href="/book/view/<%=bookInfo.id%>">View</a>
+            </li>
+            <%}%>
+        </ul>
+        <% } %>
+    </div>
+    <% if(signedInUser) {%>
+    <div>
+        <form action="/book/<%=bookInfo.id%>/comment" method="POST">
+            <label for="rating">Rating</label>
+            <select name="rating" id="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment" cols="70" rows="5" placeholder="Enter comment"></textarea>
+            <button>Post</button>
+        </form>
+    </div>
+    <% } %>
+    <% if(signedInUser){ %>
+    <a href="<%=bookInfo.downloadLink%>">Download</a>
+    <% } %>
+    <a href="/book/view/<%=bookInfo.id%>">View</a>
 </body>
 
 </html>

@@ -30,7 +30,7 @@ let getBooks = async (bookName = "subject:fiction", qty = 40) => {
             language: languageObj[books.volumeInfo.language]
         }
         try {
-            let comments = await Comments.find({ bookId: id }).exec()
+            let comments = await Comments.find({ bookId: id }).populate("author")
             bookInfo.bookComments = comments
             booksArr[id] = bookInfo
         }
