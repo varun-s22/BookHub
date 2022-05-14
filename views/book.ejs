@@ -67,6 +67,10 @@
                     data-rating="<%=com.rating%>">
                     Rated: <%=com.rating%> stars
                 </p>
+                <% for(let imgObj of com.images){ %>
+                <img src="<%= imgObj.url %> " alt="">
+                <% } %>
+
                 <% if(signedInUser && com.author.equals(signedInUser._id)) {%>
                 <form action="/book/<%=bookInfo.id%>/comment/<%=com._id%>?_method=DELETE" method="POST">
                     <button>Delete</button>
@@ -79,7 +83,7 @@
     </div>
     <% if(signedInUser) {%>
     <div>
-        <form action="/book/<%=bookInfo.id%>/comment" method="POST">
+        <form action="/book/<%=bookInfo.id%>/comment" method="POST" enctype="multipart/form-data">
             <fieldset class="starability-basic">
                 <legend>Rating:</legend>
                 <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
@@ -97,6 +101,7 @@
             </fieldset>
             <label for="comment">Comment</label>
             <textarea name="comment" id="comment" cols="70" rows="5" placeholder="Enter comment"></textarea>
+            <input type="file" name="image" id="" multiple>
             <button>Post</button>
         </form>
     </div>

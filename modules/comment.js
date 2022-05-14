@@ -8,6 +8,12 @@ const commentSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         ref: "User"
-    }
+    },
+    images: [
+        {
+            url: String,
+            imgName: String
+        }
+    ]
 })
 module.exports = mongoose.model("Comments", commentSchema)

@@ -5,6 +5,9 @@ const wrapAsync = require("../utils/wrapAsync")
 const getBooks = require("../utils/getBooks")
 const isLoggedIn = require("../utils/middlewares/isLoggedIn")
 const isCommentAuthor = require("../utils/middlewares/isCommentAuthor")
+const multer = require('multer')
+const { storage } = require("../commentImages/images")
+const upload = multer({ storage })
 
 router.get("/:id", wrapAsync(async (req, res) => {
     let bookName = req.params.id
@@ -19,7 +22,7 @@ router.get("/:id", wrapAsync(async (req, res) => {
     }
 }))
 
-router.post("/:id/comment", isLoggedIn, wrapAsync(async (req, res) => {
+router.post("/:id/comment", isLoggedIn, upload.array("image"), wrapAsync(async (req, res) => {
     let { id } = req.params
     const comment = new Comments({
         bookId: id,
@@ -27,6 +30,10 @@ router.post("/:id/comment", isLoggedIn, wrapAsync(async (req, res) => {
         rating: req.body.rating
     })
     comment.author = req.user._id
+    comment.images = []
+    for (let imgObj of req.files) {
+        comment.images.push({ url: imgObj.path, imgName: imgObj.filename })
+    }
     try {
         await comment.save()
         res.redirect(`/book/${id}`)
