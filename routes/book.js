@@ -6,7 +6,7 @@ const getBooks = require("../utils/getBooks")
 const isLoggedIn = require("../utils/middlewares/isLoggedIn")
 const isCommentAuthor = require("../utils/middlewares/isCommentAuthor")
 const multer = require('multer')
-const { storage } = require("../commentImages/images")
+const { storage, cloudinary } = require("../commentImages/images")
 const upload = multer({ storage })
 
 router.get("/:id", wrapAsync(async (req, res) => {
@@ -47,6 +47,10 @@ router.post("/:id/comment", isLoggedIn, upload.array("image"), wrapAsync(async (
 router.delete("/:id/comment/:commentId", isLoggedIn, isCommentAuthor, wrapAsync(async (req, res) => {
     try {
         let { id, commentId } = req.params
+        let commentToBeDeleted = await Comments.findById(commentId)
+        for (let imgObj of commentToBeDeleted.images) {
+            await cloudinary.uploader.destroy(imgObj.imgName)
+        }
         await Comments.findByIdAndDelete(commentId)
         res.redirect(`/book/${id}`)
     }
