@@ -15,6 +15,9 @@
     <h2>
         <%=err.msg%>
     </h2>
+    <% if(process.env.NODE_ENV!="production"){ %>
+    <p> <%= err.stack %> </p>
+    <% } %>
 </body>
 
 </html>

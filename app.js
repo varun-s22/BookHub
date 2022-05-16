@@ -14,6 +14,7 @@ const flash = require("connect-flash")
 const User = require("./modules/user")
 const passport = require("passport")
 const localPassportStrategy = require("passport-local")
+const mongoSanitize = require('express-mongo-sanitize')
 
 
 const mongoose = require('mongoose')
@@ -34,6 +35,7 @@ app.set("views", path.join(__dirname, "views"))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(mongoSanitize())
 
 const sessionConfig = {
     secret: process.env.secret,
