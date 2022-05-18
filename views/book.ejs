@@ -1,115 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/stars.css">
-    <title>
-        <%= bookInfo.title %>
-    </title>
+<%- include("layouts/boilerplate") %>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+<link rel="stylesheet" href="/stylesheets/book.css">
+<title>
+    BookHub: <%= bookInfo.title %>
+</title>
 </head>
 
 <body>
-    <h1>
-        <%= bookInfo.title %>
-    </h1>
-    <h2>
-        <%= bookInfo.subTitle %>
-    </h2>
-    <img src="<%=bookInfo.imageLink%>" alt="">
+    <%- include("partials/navBar") %>
+    <div id="top">
+        <img src="<%=bookInfo.imageLink%>" alt="Book cover" id="bookPhoto">
 
-    <% if (bookInfo.authors) { %>
-    <div>
+        <h1>
+            <%= bookInfo.title %>
+        </h1>
+    </div>
+    <div id="descParent">
         <ul>
+            <li>
+                <a href="/book/view/<%=bookInfo.id%>">View Book</a>
+            </li>
+            <% if(signedInUser){ %>
+            <li>
+                <a href="<%=bookInfo.downloadLink%>">Download Book</a>
+            </li>
+            <% } %>
+        </ul>
+        <% if (bookInfo.description) { %>
+        <div id="desc">
+            <%=bookInfo.description%>
+        </div>
+        <% } %>
+    </div>
+    <div id="authorParent">
+        <% if (bookInfo.authors) { %>
+        <div>
+            <b>A Book By:</b>
             <% for(let author of bookInfo.authors){ %>
-            <li>
+            <span>
                 <%=author%>
-            </li>
+            </span>
             <% } %>
-        </ul>
-    </div>
-    <% } %>
-
-    <div>
-        Published Year: <%=bookInfo.publishedYear%>
+        </div>
+        <% } %>
     </div>
 
-    <% if (bookInfo.categories) { %>
-    <div>
-        <ul>
+    <div id="extras">
+        <div>
+            <b>Published Year: </b> <%=bookInfo.publishedYear%>
+        </div>
+        <% if (bookInfo.categories) { %>
+        <div>
+            <b>Genres: </b>
             <% for(let category of bookInfo.categories){ %>
-            <li>
+            <span>
                 <%=category%>
-            </li>
+            </span>
             <% } %>
-        </ul>
-    </div>
-    <% } %>
-
-    <% if (bookInfo.description) { %>
-    <div>
-        <%=bookInfo.description%>
-    </div>
-    <% } %>
-
-    <div>
-        Pages : <%=bookInfo.pages%>
-        Language: <%=bookInfo.language%>
+        </div>
+        <% } %>
+        <div>
+            <b>Pages: </b> <%=bookInfo.pages%>
+        </div>
+        <div>
+            <b>Language: </b> <%=bookInfo.language%>
+        </div>
     </div>
     <div>
         <% if(bookInfo.bookComments){ %>
-        <ul>
-            <% for (let com of bookInfo.bookComments){ %>
-            <li>
-                <%= com.author.username %>: <%=com.comment%> -> <p class="starability-result"
-                    data-rating="<%=com.rating%>">
-                    Rated: <%=com.rating%> stars
-                </p>
+        <b><span id="commentHeading">Comments</span> </b>
+        <% if(bookInfo.bookComments.length===0){ %>
+        <div id="noComments">There are no comments yet!!</div>
+        <% } %>
+        <% for (let com of bookInfo.bookComments){ %>
+        <div class="comment">
+            <div id="commentUpper">
+                <div id="leftComment">
+                    <div id="commentAuthor">
+                        <img src="/images/commentIcon.png" alt="profileIcon" id="profileIcon">
+                        <%= com.author.firstName %>
+                    </div>
+                    <div id="rating">
+                        <p class="starability-result" data-rating="<%=com.rating%>">
+                            Rated: <%=com.rating%> stars
+                        </p>
+                    </div>
+                    <div id="commentDate">
+                        <b>Commented on: </b>
+                        <%=new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear() %>
+                    </div>
+                    <div id="commentDesc">
+                        <%=com.comment%>
+                    </div>
+                </div>
+                <div id="rightComment">
+                    <% if(signedInUser && com.author.equals(signedInUser._id)) {%>
+                    <form action="/book/<%=bookInfo.id%>/comment/<%=com._id%>?_method=DELETE" method="POST">
+                        <button>
+                            <img src="/images/deleteCommentIcon.png" alt="" id="deleteIcon">
+                        </button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+            <div id="commentLower">
                 <% for(let imgObj of com.images){ %>
-                <img src="<%= imgObj.url %> " alt="">
+                <img src="<%= imgObj.url %> " alt="commentImages" class="commentImages">
                 <% } %>
-
-                <% if(signedInUser && com.author.equals(signedInUser._id)) {%>
-                <form action="/book/<%=bookInfo.id%>/comment/<%=com._id%>?_method=DELETE" method="POST">
-                    <button>Delete</button>
-                </form>
-                <% } %>
-            </li>
-            <%}%>
+            </div>
+        </div>
+        <%}%>
         </ul>
         <% } %>
     </div>
+    <br>
+    <br>
     <% if(signedInUser) {%>
-    <div>
-        <form action="/book/<%=bookInfo.id%>/comment" method="POST" enctype="multipart/form-data">
-            <fieldset class="starability-basic">
-                <legend>Rating:</legend>
-                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
-                    aria-label="No rating." />
-                <input type="radio" id="first-rate1" name="rating" value="1" />
-                <label for="first-rate1" title="Terrible">1 star</label>
-                <input type="radio" id="first-rate2" name="rating" value="2" />
-                <label for="first-rate2" title="Not good">2 stars</label>
-                <input type="radio" id="first-rate3" name="rating" value="3" />
-                <label for="first-rate3" title="Average">3 stars</label>
-                <input type="radio" id="first-rate4" name="rating" value="4" />
-                <label for="first-rate4" title="Very good">4 stars</label>
-                <input type="radio" id="first-rate5" name="rating" value="5" />
-                <label for="first-rate5" title="Amazing">5 stars</label>
-            </fieldset>
-            <label for="comment">Comment</label>
-            <textarea name="comment" id="comment" cols="70" rows="5" placeholder="Enter comment"></textarea>
-            <input type="file" name="image" id="" multiple>
-            <button>Post</button>
-        </form>
+    <b><span id="commentHeading">Leave a comment</span> </b>
+
+    <div id="leaveAComment">
+        <div id="newCommentInput">
+            <form action="/book/<%=bookInfo.id%>/comment" method="POST" enctype="multipart/form-data">
+                <div id="ratingInput">
+                    <fieldset class="starability-basic">
+                        <legend>Rating</legend>
+                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
+                            aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="rating" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="rating" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                </div>
+                <br>
+                <br>
+                <div id="commentInput">
+                    <label for="comment">Comment</label>
+                    <br>
+                    <textarea name="comment" id="comment" cols="90" rows="9" placeholder="Enter comment"></textarea>
+                </div>
+                <br>
+                <br>
+                <div id="photoInput">
+                    <input type="file" name="image" id="photoBtn" multiple>
+                </div>
+                <br>
+                <br>
+                <button id="postComment">Post Comment</button>
+            </form>
+        </div>
     </div>
     <% } %>
-    <% if(signedInUser){ %>
-    <a href="<%=bookInfo.downloadLink%>">Download</a>
-    <% } %>
-    <a href="/book/view/<%=bookInfo.id%>">View</a>
+    <%- include("partials/footer") %>
 </body>
 
 </html>

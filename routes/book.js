@@ -19,6 +19,7 @@ router.get("/:id", wrapAsync(async (req, res) => {
     }
     catch (e) {
         console.log(e)
+        res.redirect("/")
     }
 }))
 

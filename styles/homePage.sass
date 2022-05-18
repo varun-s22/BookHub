@@ -1,0 +1,39 @@
+@use "variables"
+
+h1
+    font-family: variables.$font-family
+    font-weight: 500
+
+.books
+    padding: 5px
+    border: 2mm ridge #038058
+    height: 285px
+    width: 250px
+    margin: 2.5px
+    font-family: variables.$font-family
+    font-weight: 200
+    figure
+        display: inline-block
+        figcaption
+            font-size: 140%
+
+footer
+    display: flex
+    justify-content: center
+    font-weight: 300
+    font-family: variables.$font-family
+    font-size: 130%
+
+hr
+    height: 10px
+    border: 2px solid black
+
+#collection
+    margin: 0 auto
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-evenly
+    align-items: center
+    background-color: variables.$poster_bg
+html
+    background-color: variables.$temp_bg

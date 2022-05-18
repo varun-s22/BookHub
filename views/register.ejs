@@ -1,36 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<%-include("layouts/boilerplate") %>
+<link rel="stylesheet" href="/stylesheets/auth.css">
+<title>BookHub: Register</title>
 </head>
 
 <body>
-    <% if(successMsg && successMsg.length){%>
-    <%= successMsg %>
+    <% if(successMsg && successMsg.length>=1){ %>
+    <%- include("partials/flashSuccess") %>
     <% } %>
-    <% if(errorMsg && errorMsg.length){%>
-    <%= errorMsg %>
+    <% if(errorMsg && errorMsg.length>=1){ %>
+    <%- include("partials/flashError") %>
     <% } %>
-    <h1>register</h1>
-    <form action="/auth/register" method="POST">
-        <div>
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Enter username">
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Enter email">
-        </div>
-        <div>
-            <label for="password">password</label>
-            <input type="password" name="password" id="password">
-        </div>
-        <button>Submit</button>
-    </form>
+    <h1 id="regHeading">Register</h1>
+    <div id="registerBox">
+        <form action="/auth/register" method="POST">
+            <div id="first">
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" id="firstName" placeholder="Enter First Name">
+            </div>
+            <div id="last">
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name">
+            </div>
+            <div id="mailid">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="Enter Email">
+            </div>
+            <div id="usrname">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter Username">
+            </div>
+            <div id="pass">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password">
+            </div>
+            <div id="button">
+                <button>Register</button>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

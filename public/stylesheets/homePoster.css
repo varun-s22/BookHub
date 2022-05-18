@@ -1,0 +1,19 @@
+#PosterContainer {
+  margin-top: 20px;
+  background-color: #fff5d9;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.poster, #bookLink {
+  margin-left: 10%;
+}
+
+#arrowKey {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=homePoster.css.map */

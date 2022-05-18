@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/stylesheets/navBar.css">
+<nav>
+    <div class="navBarElements" id="navLeft">
+        <a href="/">
+            <img src="/images/icon2.png" alt="Home Icon" id="homeIcon">
+        </a>
+        <form action="/search">
+            <input type="text" placeholder="Search for book" name="bookName" id="searchBar">
+            <button id="searchBtn">
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35px"
+                    height="35px" viewBox="0 0 192 192" version="1.1">
+                    <g id="surface1">
+                        <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                            d="M 77.316406 0 C 57.5 0 37.679688 7.519531 22.617188 22.585938 C -7.511719 52.714844 -7.546875 101.890625 22.582031 132.015625 C 48.996094 158.429688 90.015625 161.6875 120.035156 141.789062 L 165.726562 187.476562 C 171.753906 193.503906 181.453125 193.503906 187.480469 187.476562 C 193.511719 181.449219 193.511719 171.75 187.480469 165.722656 L 141.828125 120.035156 C 161.699219 90.015625 158.421875 48.984375 132.019531 22.578125 C 116.953125 7.515625 97.132812 -0.0078125 77.316406 -0.0078125 Z M 77.28125 20.375 C 91.8125 20.382812 106.335938 25.945312 117.480469 37.089844 C 139.765625 59.375 139.800781 95.230469 117.515625 117.519531 C 95.226562 139.804688 59.371094 139.804688 37.085938 117.519531 C 14.796875 95.230469 14.796875 59.378906 37.085938 37.089844 C 48.226562 25.945312 62.753906 20.367188 77.28125 20.375 Z M 36.289062 94.792969 C 35.546875 94.820312 34.863281 95.226562 34.480469 95.867188 C 34.097656 96.507812 34.066406 97.296875 34.390625 97.96875 C 42.089844 114.085938 58.5625 125.214844 77.59375 125.214844 C 81.722656 125.214844 85.726562 124.679688 89.542969 123.695312 C 90.515625 123.429688 91.1875 122.539062 91.167969 121.527344 C 91.152344 120.519531 90.457031 119.648438 89.472656 119.414062 C 70.351562 115.144531 52.792969 106.753906 37.742188 95.242188 C 37.328125 94.925781 36.8125 94.765625 36.292969 94.792969 Z M 36.289062 94.792969 " />
+                    </g>
+                </svg>
+            </button>
+        </form>
+    </div>
+    <div class="navBarElements" id="navRight">
+        <% if(!signedInUser) {%>
+        <span id="signedInUserName">
+            Hi, Anonymous <img src="/images/profileIcon.png" alt="profileIcon" id="profileIcon">
+        </span>
+        <span id="register">
+            <a href="/auth/register" id="registerUser">Register</a>
+        </span>
+        <span id="login">
+            <a href="/auth/login" id="loginUser">Login</a>
+        </span>
+        <% } else { %>
+        <span id="signedInUserName">
+            Hi, <%=signedInUser.firstName %> <img src="/images/loggedInProfile.png" alt="profileIcon" id="profileIcon">
+        </span>
+        <span id="logout">
+            <a href="/auth/logout" id="logoutUser">Logout</a>
+        </span>
+        <% } %>
+    </div>
+</nav>

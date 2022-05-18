@@ -1,10 +1,11 @@
+require("dotenv").config()
+
 const express = require("express")
 const app = express()
 const path = require("path")
 const wrapAsync = require("./utils/wrapAsync")
 const bookError = require("./utils/bookError")
 const methodOverride = require('method-override')
-require("dotenv").config()
 const bookRoutes = require("./routes/book")
 const ejsMate = require("ejs-mate")
 const authRoutes = require("./routes/auth")
@@ -85,6 +86,7 @@ app.get("/search", wrapAsync(async (req, res) => {
     catch (e) {
         console.log("Error in searching!!")
         console.log(e)
+        res.redirect("/")
     }
 
 }))

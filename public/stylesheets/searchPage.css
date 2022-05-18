@@ -1,0 +1,36 @@
+#searchCollection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #fff5d9;
+}
+
+#searchMsg {
+  display: flex;
+  text-align: justify;
+  justify-content: center;
+  padding: 3%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 170%;
+}
+
+.searchedBook {
+  margin: 0 auto;
+  padding: 7px;
+  height: 295px;
+  width: 250px;
+  border: 2mm ridge #038058;
+}
+.searchedBook figure {
+  display: inline-block;
+}
+.searchedBook figure figcaption {
+  text-decoration: none;
+  color: black;
+  font-size: 130%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+}
+
+/*# sourceMappingURL=searchPage.css.map */

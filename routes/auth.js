@@ -1,7 +1,6 @@
 const express = require("express")
 const router = express.Router()
 const User = require("../modules/user")
-const flash = require("connect-flash")
 const wrapAsync = require("../utils/wrapAsync")
 const passport = require("passport")
 const isLoggedIn = require("../utils/middlewares/isLoggedIn")
@@ -11,8 +10,8 @@ router.get("/register", (req, res) => {
 })
 router.post("/register", wrapAsync(async (req, res, next) => {
     try {
-        const { email, username, password } = req.body
-        const user = new User({ email, username })
+        const { email, username, password, firstName, lastName } = req.body
+        const user = new User({ email, username, firstName, lastName })
         const registeredUser = await User.register(user, password)
         req.login(registeredUser, err => {
             if (err) return next(err)
@@ -39,7 +38,6 @@ router.post("/login", passport.authenticate("local", { failureFlash: true, failu
 })
 router.get("/logout", isLoggedIn, (req, res) => {
     req.logout()
-    // res.flash("success", "Successfully logged out")
     res.redirect("/")
 })
 module.exports = router

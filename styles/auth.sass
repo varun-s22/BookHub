@@ -1,0 +1,73 @@
+@use "variables"
+
+h1
+    font-family: variables.$font_family
+    font-weight: 500
+    font-size: 400%
+    text-align: center
+    color: variables.$maroon
+
+#regHeading
+    margin-top: -1%
+    margin-bottom: 7%
+#Loginbox
+    border: 6px double black
+    box-shadow: 7px 9px 7px variables.$hoveringMaroon
+    align-items: center
+    text-align: justify
+    justify-content: center
+    border-radius: 70px
+    width: 37%
+    margin-left: 32%
+
+#usrname,#pass,#button
+    display: flex
+    justify-content: space-evenly
+    text-align: justify
+    font-family: variables.$font_family
+    font-weight: 400
+    font-size: 150%
+    padding: 2%
+    margin-top: 5%
+
+input
+    font-family: variables.$font_family
+    font-weight: 300
+    font-size: 80%
+    border-radius: 40px
+    padding: 2%
+
+button
+    background-color: variables.$maroon
+    color: variables.$temp_bg
+    padding: 3%
+    font-family: variables.$font_family
+    font-weight: 400
+    font-size: 100%
+    border-radius: 30px
+    cursor: pointer
+    :hover
+        background-color: variables.$hoveringMaroon
+label
+    margin-top: 1.5%
+
+#span
+    font-family: variables.$font_family
+    font-weight: 300
+    font-size: 120%
+    text-align: center
+    margin-left: 6%
+    margin-top: 3%
+    margin-bottom: 7%
+
+#first,#last,#mailid
+    @extend #usrname
+
+#registerBox
+    @extend #Loginbox
+    width: 39%
+    margin-left: 30%
+    margin-top: -6%
+
+#email
+    margin-left: 12%

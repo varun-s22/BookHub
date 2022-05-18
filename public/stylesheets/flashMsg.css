@@ -1,0 +1,31 @@
+#cross {
+  color: black;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.parentDiv, #errorMsg, #successMsg {
+  margin: 0.45%;
+  padding: 1%;
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 150%;
+}
+
+#successMsg {
+  display: flex;
+  justify-content: center;
+  background-color: #bcffa6;
+  color: #4ccf21;
+}
+
+#errorMsg {
+  display: flex;
+  justify-content: center;
+  background-color: #fcaeae;
+  color: #f70c0c;
+}
+
+/*# sourceMappingURL=flashMsg.css.map */

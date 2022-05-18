@@ -1,0 +1,158 @@
+@use "variables"
+
+html
+    background-color: variables.$poster_bg
+    font-family: variables.$font_family
+
+#top
+    display: flex
+    justify-content: space-evenly
+    align-items: flex-start
+    margin-top: 6%
+
+#bookPhoto
+    box-shadow: 4px 4px 4px 4px grey
+    width: 10%
+h1
+    font-weight: 500
+    font-size: 340%
+
+h2
+    font-weight: 400
+    font-size: 200%
+
+#desc
+    display: flex
+    text-align: justify
+    line-height: 1.6em
+    font-weight: 300
+    font-size: 130%
+    width: 60%
+
+#descParent
+    display: flex
+    justify-content: space-between
+    padding-right: 3%
+    ul
+        margin-top: 5%
+        li
+            display: inline-block
+            a
+                text-decoration: none
+                border: 2px solid black
+                border-radius: 20px
+                padding: 10px
+                background-color: variables.$maroon
+                color: variables.$temp_bg
+                :hover
+                    background-color: variables.$hoveringMaroon
+
+#authorParent
+    @extend #desc
+    padding: 3%
+    display: flex
+    margin-left: 25%
+
+#extras
+    display: flex
+    justify-content: space-evenly
+    line-height: 1.6em
+    font-weight: 300
+    font-size: 130%
+    margin-bottom: 5%
+
+#profileIcon
+    width: 5px
+    height: 5px
+
+.comment
+    margin: 7%,9%,7%,9%
+    padding: 2%
+    border: 3px black solid
+    display: flex
+    flex-direction: column
+    font-family: variables.$font_family
+
+#commentUpper
+    display: flex
+    justify-content: space-between
+
+#commentLower
+    display: flex
+    flex-wrap: wrap
+
+#leftComment
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+
+#commentHeading
+    font-size: 170%
+#commentDate
+    font-weight: 200
+    font-size: 90%
+
+#commentAuthor
+    display: flex
+    align-items: center
+    font-weight: 400
+    font-size: 140%
+
+#rating
+    padding: 10px
+
+#commentDesc
+    font-weight: 300
+    font-size: 120%
+    line-height: 1.6em
+    text-align: justify
+
+#deleteIcon
+    width: 30px
+    height: 30px
+    background: variables.$poster_bg
+    cursor: pointer
+
+.commentImages
+    width: 40%
+    height: 40%
+    border: 2px solid black
+
+#noComments
+    font-weight: 300
+    font-size: 130%
+    display: flex
+    justify-content: center
+
+#newCommentInput
+    margin: 7%
+    padding: 3%
+    display: flex
+    flex-direction: column
+    font-family: variables.$font_family
+    font-weight: 300
+    font-size: 135%
+    justify-content: space-around
+    border: 2px solid black
+    border-radius: 30px
+    width: 50%
+
+#comment
+    font-family: variables.$font_family
+    font-weight: 200
+    font-size: 80%
+
+#postComment
+    padding: 2%
+    background-color: variables.$maroon
+    cursor: pointer
+    font-size: 120%
+    border-radius: 20px
+    margin-left: 38%
+    color: variables.$poster_bg
+    :hover
+        background-color: variables.$hoveringMaroon
+
+#leaveAComment
+    display: flex
+    justify-content: center

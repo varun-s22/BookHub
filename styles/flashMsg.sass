@@ -1,0 +1,29 @@
+@use "variables"
+
+#cross
+    color: black
+    transition: 0.3s
+    cursor: pointer
+
+.parentDiv
+    margin: 0.45%
+    padding: 1%
+    display: flex
+    justify-content: center
+    font-family: variables.$font-family
+    font-weight: 300
+    font-size: 150%
+
+#successMsg
+    @extend .parentDiv
+    display: flex
+    justify-content: center
+    background-color: variables.$success
+    color: #4ccf21
+
+#errorMsg
+    @extend .parentDiv
+    display: flex
+    justify-content: center
+    background-color: variables.$error
+    color: #f70c0c

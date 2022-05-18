@@ -1,36 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<%- include("layouts/boilerplate") %>
+<title>BookHub</title>
 </head>
 
 <body>
-    <%= successMsg %>
-    <%= errorMsg %>
-    <% if(!signedInUser) {%>
-    <a href="/auth/register">register</a>
-    <a href="/auth/login">Login</a>
-    <% } else { %>
-    <a href="/auth/logout">Logout</a>
+    <%- include("partials/navBar") %>
+    <% if(successMsg && successMsg.length>=1){ %>
+    <%- include("partials/flashSuccess") %>
     <% } %>
-    <h1>home page</h1>
-    <form action="/search">
-        <input type="text" placeholder="Search for book" name="bookName">
-        <button>Search</button>
-    </form>
-    <ul>
+    <% if(errorMsg && errorMsg.length>=1){ %>
+    <%- include("partials/flashError") %>
+    <% } %>
+    <%- include("partials/homePoster") %>
+    <br>
+    <br>
+    <h1>
+        You might Like
+    </h1>
+    <div id="collection">
         <% for(let id in booksArr){%>
-        <li>
-            <a href="/book/<%=booksArr[id].title%>">
-                <img src="<%=booksArr[id].imageLink%>" alt="">
-            </a>
-        </li>
+        <div class="books">
+            <figure>
+                <a href="/book/<%=booksArr[id].title%>">
+                    <img src="<%=booksArr[id].imageLink%>" alt="">
+                </a>
+                <figcaption><%=booksArr[id].title.substring(0,20)%></figcaption>
+            </figure>
+        </div>
         <% } %>
-    </ul>
+    </div>
+    <%- include("partials/footer") %>
 </body>
 
 </html>

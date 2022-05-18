@@ -1,0 +1,59 @@
+@use "variables"
+nav
+    display: flex
+    justify-content: space-between
+    background-color: variables.$temp_bg
+    box-shadow: 5px 10px 10px #a8a5a5
+    position: sticky
+    top: 0.5px
+#searchBar
+    margin-top: 10%
+    margin-left: 6%
+    padding-left: 20px
+    display: inline
+    width: 300%
+    border-radius: 30px
+    height: 50%
+    font-family: variables.$font-family
+    font-weight: 300
+    font-size: 90%
+.navBarElements
+    display: flex
+#navLeft
+    width: 80%
+#navRight
+    width: 40%
+    justify-content: space-around
+#searchBtn
+    display: inline
+    margin-left: 290%
+    vertical-align: top
+    margin-top: -20%
+    background-color: transparent
+    cursor: pointer
+    border: none
+#register,#login,#logout,#signedInUserName
+    align-items: center
+    display: flex
+    font-family: variables.$font-family
+    font-size: 130%
+    font-weight: 400
+    a
+        color: variables.$temp_bg
+        text-decoration: none
+#signedInUserName
+    font-family: variables.$font-family
+    font-weight: 400
+    font-size: 150%
+    margin-left: -15%
+#profileIcon
+    width: 50px
+    height: 50px
+#registerUser,#loginUser,#logoutUser
+    padding: 10%
+    border: 1px solid black
+    border-radius: 15px
+    background-color: variables.$maroon
+#register,#login,#logout
+    :hover
+        background-color: variables.$hoveringMaroon

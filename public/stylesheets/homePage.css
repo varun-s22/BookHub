@@ -1,0 +1,48 @@
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.books {
+  padding: 5px;
+  border: 2mm ridge #038058;
+  height: 285px;
+  width: 250px;
+  margin: 2.5px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+}
+.books figure {
+  display: inline-block;
+}
+.books figure figcaption {
+  font-size: 140%;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  font-size: 130%;
+}
+
+hr {
+  height: 10px;
+  border: 2px solid black;
+}
+
+#collection {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #fff5d9;
+}
+
+html {
+  background-color: #faf5b6;
+}
+
+/*# sourceMappingURL=homePage.css.map */
