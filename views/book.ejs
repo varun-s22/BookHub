@@ -86,7 +86,7 @@
                         </p>
                     </div>
                     <div id="commentDate">
-                        <b>Commented on: </b>
+                        <b>Comment posted on: </b>
                         <%=new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear() %>
                     </div>
                     <div id="commentDesc">
@@ -96,7 +96,7 @@
                 <div id="rightComment">
                     <% if(signedInUser && com.author.equals(signedInUser._id)) {%>
                     <form action="/book/<%=bookInfo.id%>/comment/<%=com._id%>?_method=DELETE" method="POST">
-                        <button>
+                        <button id="deleteBtn">
                             <img src="/images/deleteCommentIcon.png" alt="" id="deleteIcon">
                         </button>
                     </form>

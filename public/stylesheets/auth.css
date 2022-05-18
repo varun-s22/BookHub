@@ -79,4 +79,23 @@ label {
   margin-left: 12%;
 }
 
+@media (min-width: 768px) and (max-width: 992px) {
+  #registerBox, #Loginbox {
+    width: 57%;
+    margin-left: 21%;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  #registerBox, #Loginbox {
+    width: 77%;
+    margin-left: 11%;
+  }
+}
+@media (max-width: 575.98px) {
+  #registerBox, #Loginbox {
+    width: 97%;
+    margin-left: 0%;
+  }
+}
+
 /*# sourceMappingURL=auth.css.map */

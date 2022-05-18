@@ -68,7 +68,7 @@ h2
 .comment
     margin: 7%,9%,7%,9%
     padding: 2%
-    border: 3px black solid
+    box-shadow: 6px 4px 16px grey
     display: flex
     flex-direction: column
     font-family: variables.$font_family
@@ -113,6 +113,11 @@ h2
     background: variables.$poster_bg
     cursor: pointer
 
+#deleteBtn
+    background: variables.$poster_bg
+    cursor: pointer
+    border: none
+
 .commentImages
     width: 40%
     height: 40%
@@ -156,3 +161,103 @@ h2
 #leaveAComment
     display: flex
     justify-content: center
+
+@media (min-width: 992px) and (max-width:1199px)
+    #descParent
+        display: flex
+        justify-content: space-between
+        padding-right: 3%
+        ul
+            margin-top: 10%
+            li
+                display: inline-block
+                a
+                    text-decoration: none
+                    border: 2px solid black
+                    border-radius: 20px
+                    padding: 10px
+                    background-color: variables.$maroon
+                    color: variables.$temp_bg
+                    :hover
+                        background-color: variables.$hoveringMaroon
+    textarea
+        width: 90%
+
+@media (min-width: 768px) and (max-width: 992px)
+    #descParent
+        display: flex
+        justify-content: space-between
+        padding-right: 3%
+        ul
+            margin-top: 10%
+            li
+                margin: 13px
+                a
+                    text-decoration: none
+                    border: 2px solid black
+                    border-radius: 20px
+                    padding: 10px
+                    background-color: variables.$maroon
+                    color: variables.$temp_bg
+                    :hover
+                        background-color: variables.$hoveringMaroon
+    h1
+        font-size: 300%
+    #commentHeading
+        font-size: 140%
+    #noComments,#desc,#extras
+        font-size: 100%
+    textarea
+        width: 100%
+@media (min-width: 576px) and (max-width: 767.98px)
+    #descParent
+        display: flex
+        justify-content: space-between
+        padding-right: 3%
+        ul
+            margin-top: 15%
+            li
+                margin-top: 23px
+                a
+                    text-decoration: none
+                    border: 2px solid black
+                    border-radius: 20px
+                    padding: 10px
+                    background-color: variables.$maroon
+                    color: variables.$temp_bg
+                    :hover
+                        background-color: variables.$hoveringMaroon
+    h1
+        font-size: 200%
+    #commentHeading
+        font-size: 100%
+    #noComments,#desc,#extras
+        font-size: 70%
+    textarea
+        width: 100%
+@media (max-width: 575.98px)
+    #descParent
+        display: flex
+        justify-content: space-between
+        padding-right: 3%
+        ul
+            margin-top: 25%
+            li
+                margin-top: 20px
+                a
+                    text-decoration: none
+                    border: 2px solid black
+                    border-radius: 20px
+                    padding: 10px
+                    background-color: variables.$maroon
+                    color: variables.$temp_bg
+                    :hover
+                        background-color: variables.$hoveringMaroon
+    h1
+        font-size: 140%
+    #commentHeading
+        font-size: 90%
+    #noComments,#desc,#extras
+        font-size: 85%
+    textarea
+        width: 80%

@@ -78,4 +78,67 @@ nav {
   background-color: #960303;
 }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  #searchBar {
+    width: 178%;
+  }
+
+  #register, #login, #logout, #signedInUserName {
+    font-size: 110%;
+  }
+
+  #searchBtn {
+    margin-left: 170%;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  #searchBar {
+    width: 110%;
+  }
+
+  #register, #login, #logout, #signedInUserName {
+    font-size: 80%;
+  }
+
+  #searchBtn {
+    margin-left: 108%;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  #searchBar {
+    width: 80%;
+  }
+
+  #register, #login, #logout, #signedInUserName {
+    font-size: 100%;
+  }
+
+  #signedInUserName {
+    display: none;
+  }
+
+  #searchBtn {
+    margin-left: 80%;
+  }
+}
+@media (max-width: 575.98px) {
+  #searchBar {
+    width: 80%;
+    margin-top: 16%;
+  }
+
+  #register, #login, #logout, #signedInUserName {
+    font-size: 90%;
+  }
+
+  #signedInUserName {
+    display: none;
+  }
+
+  #searchBtn {
+    margin-left: 70%;
+    margin-top: -35%;
+  }
+}
+
 /*# sourceMappingURL=navBar.css.map */

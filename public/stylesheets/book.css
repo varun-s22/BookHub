@@ -80,7 +80,7 @@ h2 {
 .comment {
   margin: 7%, 9%, 7%, 9%;
   padding: 2%;
-  border: 3px black solid;
+  box-shadow: 6px 4px 16px grey;
   display: flex;
   flex-direction: column;
   font-family: "Poppins", sans-serif;
@@ -136,6 +136,12 @@ h2 {
   cursor: pointer;
 }
 
+#deleteBtn {
+  background: #fff5d9;
+  cursor: pointer;
+  border: none;
+}
+
 .commentImages {
   width: 40%;
   height: 40%;
@@ -185,6 +191,155 @@ h2 {
 #leaveAComment {
   display: flex;
   justify-content: center;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  #descParent {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 3%;
+  }
+  #descParent ul {
+    margin-top: 10%;
+  }
+  #descParent ul li {
+    display: inline-block;
+  }
+  #descParent ul li a {
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #800303;
+    color: #faf5b6;
+  }
+  #descParent ul li a :hover {
+    background-color: #960303;
+  }
+
+  textarea {
+    width: 90%;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  #descParent {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 3%;
+  }
+  #descParent ul {
+    margin-top: 10%;
+  }
+  #descParent ul li {
+    margin: 13px;
+  }
+  #descParent ul li a {
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #800303;
+    color: #faf5b6;
+  }
+  #descParent ul li a :hover {
+    background-color: #960303;
+  }
+
+  h1 {
+    font-size: 300%;
+  }
+
+  #commentHeading {
+    font-size: 140%;
+  }
+
+  #noComments, #desc, #authorParent, #extras {
+    font-size: 100%;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  #descParent {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 3%;
+  }
+  #descParent ul {
+    margin-top: 15%;
+  }
+  #descParent ul li {
+    margin-top: 23px;
+  }
+  #descParent ul li a {
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #800303;
+    color: #faf5b6;
+  }
+  #descParent ul li a :hover {
+    background-color: #960303;
+  }
+
+  h1 {
+    font-size: 200%;
+  }
+
+  #commentHeading {
+    font-size: 100%;
+  }
+
+  #noComments, #desc, #authorParent, #extras {
+    font-size: 70%;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}
+@media (max-width: 575.98px) {
+  #descParent {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 3%;
+  }
+  #descParent ul {
+    margin-top: 25%;
+  }
+  #descParent ul li {
+    margin-top: 20px;
+  }
+  #descParent ul li a {
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #800303;
+    color: #faf5b6;
+  }
+  #descParent ul li a :hover {
+    background-color: #960303;
+  }
+
+  h1 {
+    font-size: 140%;
+  }
+
+  #commentHeading {
+    font-size: 90%;
+  }
+
+  #noComments, #desc, #authorParent, #extras {
+    font-size: 85%;
+  }
+
+  textarea {
+    width: 80%;
+  }
 }
 
 /*# sourceMappingURL=book.css.map */
