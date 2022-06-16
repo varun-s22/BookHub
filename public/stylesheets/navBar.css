@@ -4,6 +4,7 @@ nav {
   background-color: #faf5b6;
   box-shadow: 5px 10px 10px #a8a5a5;
   position: sticky;
+  z-index: 1000;
   top: 0.5px;
 }
 
@@ -82,11 +83,9 @@ nav {
   #searchBar {
     width: 178%;
   }
-
   #register, #login, #logout, #signedInUserName {
     font-size: 110%;
   }
-
   #searchBtn {
     margin-left: 170%;
   }
@@ -95,11 +94,9 @@ nav {
   #searchBar {
     width: 110%;
   }
-
   #register, #login, #logout, #signedInUserName {
     font-size: 80%;
   }
-
   #searchBtn {
     margin-left: 108%;
   }
@@ -108,15 +105,12 @@ nav {
   #searchBar {
     width: 80%;
   }
-
   #register, #login, #logout, #signedInUserName {
     font-size: 100%;
   }
-
   #signedInUserName {
     display: none;
   }
-
   #searchBtn {
     margin-left: 80%;
   }
@@ -126,15 +120,12 @@ nav {
     width: 80%;
     margin-top: 16%;
   }
-
   #register, #login, #logout, #signedInUserName {
     font-size: 90%;
   }
-
   #signedInUserName {
     display: none;
   }
-
   #searchBtn {
     margin-left: 70%;
     margin-top: -35%;
