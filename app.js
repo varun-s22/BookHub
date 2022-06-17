@@ -51,20 +51,14 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(mongoSanitize())
 
-// session store for PRODUCTION enviroment
-const store = new mongoDBStore({
-    url: dbUrl,
-    secret: process.env.secret,
-    touchAfter: 24 * 3600
-})
-
-store.on("error", (e) => {
-    console.log("SESSION STORE ERROR!!", e)
-})
 
 // session config
 const sessionConfig = {
-    store: store,
+    store: mongoDBStore.create({
+        mongoUrl: dbUrl,
+        secret: process.env.secret,
+        touchAfter: 24 * 3600
+    }),
     secret: process.env.secret,
     resave: false,
     saveUninitialized: true,
