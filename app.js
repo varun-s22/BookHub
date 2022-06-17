@@ -20,7 +20,7 @@ const passport = require("passport")
 const localPassportStrategy = require("passport-local")
 const mongoSanitize = require('express-mongo-sanitize')
 const mongoose = require('mongoose')
-const mongoDBStore = require("connect-mongo")(session)
+const mongoDBStore = require("connect-mongo")
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/comment'
 const port = process.env.PORT || 3000
