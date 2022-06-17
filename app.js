@@ -1,7 +1,7 @@
 // for development, we store the enviroment variables
 // in .env file
-
-require("dotenv").config()
+if (process.env.NODE_ENV !== "production")
+    require("dotenv").config()
 
 const express = require("express")
 const app = express()
@@ -20,9 +20,13 @@ const passport = require("passport")
 const localPassportStrategy = require("passport-local")
 const mongoSanitize = require('express-mongo-sanitize')
 const mongoose = require('mongoose')
+const mongoDBStore = require("connect-mongo")(session)
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/comment'
+const port = process.env.PORT || 3000
 
 // connects with the local database
-mongoose.connect('mongodb://localhost:27017/comment', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -47,8 +51,20 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(mongoSanitize())
 
+// session store for PRODUCTION enviroment
+const store = new mongoDBStore({
+    url: dbUrl,
+    secret: process.env.secret,
+    touchAfter: 24 * 3600
+})
+
+store.on("error", (e) => {
+    console.log("SESSION STORE ERROR!!", e)
+})
+
 // session config
 const sessionConfig = {
+    store: store,
     secret: process.env.secret,
     resave: false,
     saveUninitialized: true,
@@ -127,7 +143,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render("error", { err })
 })
 
-app.listen(3000, () => {
+app.listen(port, () => {
     // app listener
-    console.log("connected to port 3000")
+    console.log(`connected to port ${port}`)
 })
