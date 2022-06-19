@@ -163,6 +163,9 @@ h2
     justify-content: center
 
 @media (min-width: 992px) and (max-width:1199px)
+    #bookPhoto
+        height: 30%
+        width: 30%
     #descParent
         display: flex
         justify-content: space-between
@@ -185,79 +188,78 @@ h2
 
 @media (min-width: 768px) and (max-width: 992px)
     #descParent
-        display: flex
-        justify-content: space-between
-        padding-right: 3%
         ul
-            margin-top: 10%
             li
                 margin: 13px
-                a
-                    text-decoration: none
-                    border: 2px solid black
-                    border-radius: 20px
-                    padding: 10px
-                    background-color: variables.$maroon
-                    color: variables.$temp_bg
-                    :hover
-                        background-color: variables.$hoveringMaroon
     h1
         font-size: 300%
     #commentHeading
         font-size: 140%
-    #noComments,#desc,#extras
+    #noComments,#desc,#extras,#newCommentInput,#postComment
         font-size: 100%
     textarea
         width: 100%
 @media (min-width: 576px) and (max-width: 767.98px)
     #descParent
-        display: flex
-        justify-content: space-between
-        padding-right: 3%
         ul
             margin-top: 15%
             li
                 margin-top: 23px
-                a
-                    text-decoration: none
-                    border: 2px solid black
-                    border-radius: 20px
-                    padding: 10px
-                    background-color: variables.$maroon
-                    color: variables.$temp_bg
-                    :hover
-                        background-color: variables.$hoveringMaroon
     h1
         font-size: 200%
     #commentHeading
         font-size: 100%
-    #noComments,#desc,#extras
+    #noComments,#desc,#extras,#newCommentInput,#postComment
         font-size: 70%
     textarea
-        width: 100%
+        width: 80%
 @media (max-width: 575.98px)
+    #bookPhoto
+        height: 25%
+        width: 25%
     #descParent
-        display: flex
-        justify-content: space-between
-        padding-right: 3%
         ul
             margin-top: 25%
             li
                 margin-top: 20px
-                a
-                    text-decoration: none
-                    border: 2px solid black
-                    border-radius: 20px
-                    padding: 10px
-                    background-color: variables.$maroon
-                    color: variables.$temp_bg
-                    :hover
-                        background-color: variables.$hoveringMaroon
     h1
         font-size: 140%
     #commentHeading
         font-size: 90%
-    #noComments,#desc,#extras
+    #noComments,#desc,#extras,#newCommentInput,#postComment
         font-size: 85%
     textarea
         width: 80%
+
+@media (max-width: 455px)
+    #bookPhoto
+        height: 20%
+        width: 20%
+    #descParent
+        ul
+            li
+                a
+                    font-size: 50%
+    #postComment
+        font-size: 60%
+        margin-left: 34%
+    textarea
+        width: 98%
+    #newCommentInput
+        font-size: 80%
+@media ( max-width: 350px)
+    #boohPhoto
+        height: 15%
+        width: 15%
+    #descParent
+        ul
+            li
+                a
+                    font-size: 40%
+    textarea
+        width: 98%
+    #postComment
+        font-size: 60%
+        margin-left: 28%
+    #newCommentInput
+        font-size: 70%

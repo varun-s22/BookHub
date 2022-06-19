@@ -3,6 +3,7 @@
 if (process.env.NODE_ENV !== "production")
     require("dotenv").config()
 
+// all requirements
 const express = require("express")
 const app = express()
 const path = require("path")
@@ -22,7 +23,10 @@ const mongoSanitize = require('express-mongo-sanitize')
 const mongoose = require('mongoose')
 const mongoDBStore = require("connect-mongo")
 
+// if in production, it takes database url, else it takes local database
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/comment'
+
+// if in production, it takes port by the server, else local port=>3000
 const port = process.env.PORT || 3000
 
 // connects with the local database

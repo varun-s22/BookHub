@@ -101,5 +101,10 @@
     font-size: 90%;
   }
 }
+@media (max-width: 455px) {
+  .searchedBook {
+    width: 200px;
+  }
+}
 
 /*# sourceMappingURL=searchPage.css.map */

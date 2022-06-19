@@ -97,5 +97,23 @@ label {
     margin-left: 0%;
   }
 }
+@media (max-width: 455px) {
+  #registerBox, #Loginbox {
+    width: 100%;
+    margin-left: -2%;
+  }
+  #username, #password, #firstName, #lastName, #email {
+    font-size: 55%;
+  }
+}
+@media (max-width: 350px) {
+  #registerBox, #Loginbox {
+    width: 100%;
+    margin-left: -2%;
+  }
+  #username, #password, #firstName, #lastName, #email {
+    font-size: 45%;
+  }
+}
 
 /*# sourceMappingURL=auth.css.map */

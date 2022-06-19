@@ -67,13 +67,7 @@ html {
     padding: 2px;
     border: 1.5mm ridge #038058;
     height: 270px;
-    width: 195px;
     margin: 2.1px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 200;
-  }
-  .books figure {
-    display: inline-block;
   }
   .books figure figcaption {
     font-size: 120%;
@@ -81,11 +75,17 @@ html {
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
   .books {
-    padding: 2px;
-    border: 1.5mm ridge #038058;
     height: 250px;
     width: 167px;
-    margin: 2.1px;
+  }
+  .books figure figcaption {
+    font-size: 80%;
+  }
+}
+@media (max-width: 575.98px) {
+  .books {
+    height: 250px;
+    width: 185px;
     font-family: "Poppins", sans-serif;
     font-weight: 200;
   }
@@ -95,22 +95,8 @@ html {
   .books figure figcaption {
     font-size: 80%;
   }
-}
-@media (max-width: 575.98px) {
-  .books {
-    padding: 2px;
-    border: 1.5mm ridge #038058;
-    height: 250px;
-    width: 165px;
-    margin: 2.1px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 200;
-  }
-  .books figure {
-    display: inline-block;
-  }
-  .books figure figcaption {
-    font-size: 70%;
+  footer {
+    font-size: 90%;
   }
 }
 
